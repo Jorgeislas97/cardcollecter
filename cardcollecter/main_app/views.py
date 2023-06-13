@@ -1,5 +1,6 @@
 # main_app/views.py
 from django.shortcuts import render
+from django.views.generic.edit import CreateView 
 # Import the Cat Model
 from .models import Card
 
@@ -23,3 +24,7 @@ def cards_detail(request, card_id):
     return render(request, 'cards/detail.html', {
         'card' : card 
     })
+
+class CardCreate(CreateView):
+    model = Card 
+    fields = '__all__'
