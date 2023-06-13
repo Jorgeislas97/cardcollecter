@@ -10,5 +10,9 @@
       <p>Description: {{ card.description|linebreaks }}</p>
       <p>Grade: {{ card.grade }}</p>
     </div>
+    <div class="card-action">
+      <a href="{% url 'cards_update' card.id %}">Edit</a>
+      <a href="{% url 'cards_delete' card.id %}">Delete</a>
+    </div>
   </div>
 {% endblock %}

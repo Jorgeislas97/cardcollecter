@@ -1,7 +1,7 @@
 # main_app/views.py
 from django.shortcuts import render
-from django.views.generic.edit import CreateView 
-# Import the Cat Model
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+# Import the Card Model
 from .models import Card
 
 
@@ -28,3 +28,11 @@ def cards_detail(request, card_id):
 class CardCreate(CreateView):
     model = Card 
     fields = '__all__'
+
+class CardUpdate(UpdateView):
+    model = Card 
+    fields = ['series', 'description', 'grade']
+
+class CardDelete(DeleteView):
+    model = Card 
+    success_url = '/cards'
