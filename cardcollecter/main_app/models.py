@@ -1,6 +1,13 @@
 from django.db import models
 from django.urls import reverse
 
+
+MARKET = (
+    ('B', 'BGS'),
+    ('P', 'PSA'),
+    ('C', 'CGC'),
+)
+
 # Create your models here.
 
 class Card(models.Model):
@@ -14,8 +21,25 @@ class Card(models.Model):
 # therefore no makemigrations is needed 
 
 
-def __str__(self):
-    return f'{self.name} ({self.id})'
+    def __str__(self):
+        return f'{self.name} ({self.id})'
 
-def get_absolute_url(self):
-    return reverse('detail', kwargs={'card_id': self.id})
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'card_id': self.id})
+
+
+
+class Market(models.Model):
+    date  = models.DateField()
+    price = models.CharField(
+        max_length=1,
+        choices =MARKET,
+        default=MARKET [0][0]
+)
+    card = models.ForeignKey(
+        Card,
+        on_delete=models.CASCADE
+)
+
+    def __str__(self):
+        return f"{self.get_price_display()} on {self.date}"
