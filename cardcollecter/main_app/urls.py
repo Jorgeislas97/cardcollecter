@@ -11,5 +11,6 @@ urlpatterns = [
     path('cards/create/', views.CardCreate.as_view(), name='Cards_create'),
     path('card/<int:pk>/update/' , views.CardUpdate.as_view(),name='cards_update'),
     path('card/<int:pk>/delete/' , views.CardDelete.as_view(),name='cards_delete'),
+    path('card/<int:card_id>/add_market/', views.add_market, name='add_market'),
 
 ]
